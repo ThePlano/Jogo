@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     private Rigidbody2D rb2d;               // Define o corpo rigido 2D que representa a bola
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     // inicializa a bola randomicamente para esquerda ou direita
@@ -33,8 +34,15 @@ public class BallController : MonoBehaviour
         if(coll.collider.CompareTag("WallD")){
             SceneManager.LoadScene("defeat"); 
         }
+                // Verifica se o objeto colidido tem a tag "blocko"
+        if (coll.gameObject.CompareTag("block"))
+        {
+            // Destrói o objeto colidido
+            Destroy(coll.gameObject);
+        }
 
     }
+
     // Reinicializa a posição e velocidade da bola
     void ResetBall(){
         rb2d.linearVelocity = Vector2.zero;
